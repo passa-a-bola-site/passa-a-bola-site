@@ -1,0 +1,29 @@
+/* Reset suave + base tipográfica */
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji";
+  color: #1f1f1f;
+  background: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+:root{
+  --purple: #6C39D1;
+  --purple-700: #5b2fba;
+  --yellow: #F6C13B;
+  --yellow-700: #d2a12f;
+  --red: #E14B4B;
+  --text-muted: #6b7280;
+  --border: #e5e7eb;
+  --container: 1200px;
+}
+
+.container{
+  max-width: var(--container);
+  margin-inline: auto;
+  padding: 0 24px;
+}
+a{ color: inherit; text-decoration: none; }
