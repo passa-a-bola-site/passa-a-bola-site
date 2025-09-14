@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Header from "./components/Header.jsx";
-import Inicio from "./pages/Inicio.jsx";      // MAIÚSCULO
-import Historia from "./pages/Historia.jsx";  // MAIÚSCULO
+import Inicio from "./pages/Inicio.jsx";
+import Historia from "./pages/historia.jsx";
 
 function getRoute() {
   const raw = window.location.hash.replace(/^#/, "");
