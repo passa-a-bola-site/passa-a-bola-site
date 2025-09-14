@@ -1,29 +1,116 @@
-/* Reset suave + base tipográfica */
-* { box-sizing: border-box; }
-html, body, #root { height: 100%; }
-body {
-  margin: 0;
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji";
-  color: #1f1f1f;
-  background: #ffffff;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-}
+/* Tipos */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700;800;900&display=swap');
 
 :root{
-  --purple: #6C39D1;
-  --purple-700: #5b2fba;
-  --yellow: #F6C13B;
-  --yellow-700: #d2a12f;
-  --red: #E14B4B;
-  --text-muted: #6b7280;
-  --border: #e5e7eb;
-  --container: 1200px;
+  --purple:#7B3AF5;
+  --purple-strong:#6a2fe6;
+  --yellow:#FADF63;
+  --black:#101010;
+  --white:#ffffff;
+  --card:#F4F4F4;
+  --blue-bar:#3DB3FF;
 }
 
-.container{
-  max-width: var(--container);
-  margin-inline: auto;
-  padding: 0 24px;
+*{box-sizing:border-box}
+body{font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color:#111}
+.container{width:min(1200px,92%); margin-inline:auto}
+
+/* ============== HERO ============== */
+/* ⚠️ Apague QUALQUER bloco antigo que tenha .hero { background: ... } */
+/* Aqui eu uso caminho RELATIVO do Vite para pegar imagem de src/assets  */
+.home .hero{
+  position:relative;
+  min-height: 62vh;
+  background-image: url("./assets/hero.jpg"); /* <- troque o nome aqui se a sua imagem tiver outro nome dentro de src/assets */
+  background-size: cover;
+  background-position: center right;
+  display:flex; align-items:center;
+  border-radius:16px;
+  overflow:hidden;
+  margin-top:16px;
+  box-shadow: 0 10px 28px rgba(0,0,0,.08);
 }
-a{ color: inherit; text-decoration: none; }
+
+.hero__overlay{
+  position:absolute; inset:0;
+  background: linear-gradient(90deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.18) 55%, rgba(0,0,0,0) 100%);
+}
+
+.hero__content{position:relative; padding-block: clamp(32px, 6vw, 70px); text-align:left}
+
+/* Título em CAIXA ALTA, grosso e com “pegada” de banner */
+.hero__title{
+  font-family: "Bebas Neue", Inter, sans-serif;
+  font-weight: 900;
+  letter-spacing:.6px;
+  text-transform: uppercase;
+  font-size: clamp(56px, 7.6vw, 92px);
+  line-height: .95;
+  color: var(--purple);
+  margin: 0 0 14px 0;
+}
+
+.hero__subtitle{
+  color: var(--white);
+  text-transform: uppercase;
+  font-weight: 800;
+  line-height: 1.28;
+  font-size: clamp(14px, 2.1vw, 20px);
+  text-shadow: 0 3px 10px rgba(0,0,0,.35);
+  margin: 0 0 26px 0;
+  max-width: 720px;
+}
+
+/* BOTÕES pill com sombra “gordinha” */
+.hero__cta{display:flex; gap:16px; flex-wrap:wrap}
+.btn{
+  display:inline-block;
+  padding: 12px 24px;
+  border-radius: 999px;
+  font-weight: 900;
+  text-decoration:none;
+  border:2px solid #00000033;
+  transition: transform .15s ease, box-shadow .15s ease, background .2s;
+}
+.btn--yellow{background: var(--yellow); color:#1e1e1e; box-shadow: 0 6px 0 rgba(0,0,0,.25)}
+.btn--yellow:hover{transform: translateY(-2px); box-shadow:0 10px 14px rgba(0,0,0,.2)}
+.btn--purple{background: var(--purple); color: var(--white); box-shadow: 0 6px 0 rgba(0,0,0,.2)}
+.btn--purple:hover{background: var(--purple-strong); transform: translateY(-2px); box-shadow:0 10px 16px rgba(0,0,0,.22)}
+
+/* barra azul no rodapé do banner */
+.hero__bottom-bar{position:absolute; left:0; right:0; bottom:0; height:6px; background: var(--blue-bar)}
+
+/* ============== STATS ============== */
+.stats{
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  padding-block: 28px 40px;
+}
+.stat{
+  background:var(--card);
+  border-radius:16px;
+  padding:26px;
+  min-height:112px;
+  text-align:center;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  box-shadow: 0 1px 0 rgba(0,0,0,.04);
+}
+.stat--purple{background: rgba(123,58,245,.14); border:2px solid rgba(123,58,245,.35)}
+.stat--black{background: var(--black); color: var(--white)}
+.stat__value{font-size: clamp(26px, 3.6vw, 32px); font-weight:900; margin-bottom:6px}
+.stat__label{font-size: clamp(13px, 1.6vw, 15px); font-weight:600}
+
+/* Responsivo */
+@media (max-width: 920px){ .stats{grid-template-columns: repeat(2, 1fr)} }
+@media (max-width: 520px){ .home .hero{min-height: 56vh} .stats{grid-template-columns: 1fr} }
+
+.home .hero {
+  background-image: url("./assets/hero.jpg"); /* usa o nome que você salvou */
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-align: left;
+  padding: 80px 40px;
+  border-radius: 12px;
+}

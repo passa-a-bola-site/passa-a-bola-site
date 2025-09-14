@@ -1,157 +1,91 @@
-import React, { useState, useEffect } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import Logo from "../assets/logo.png";
+import React from "react";
+import logo from "../assets/logo.png"; // troque se for .svg
+
+const LOGO_H = 90; // px
+const LINKS = [
+  ["Início", "#/"],
+  ["História", "#/historia"],
+  ["Campeonatos", "#/campeonatos"],
+  ["Times", "#/times"],
+  ["Notícias", "#/noticias"],
+  ["Inscrições", "#/inscricoes"],
+];
 
 export default function Header() {
-  const location = useLocation();
-  const navigate = useNavigate();
-  const [isOpen, setIsOpen] = useState(false);
+  const isActive = (href) => {
+    const h = window.location.hash || "#/";
+    return href === "#/" ? h === "#/" : h.startsWith(href);
+  };
 
-  // Inicializa o estado de login
-  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
+  const wrap = {
+    position: "sticky",
+    top: 0,
+    zIndex: 50,
+    background: "#fff",
+    borderBottom: "1px solid #eee",
+  };
 
-  useEffect(() => {
-    // Função para atualizar login quando o localStorage mudar em outra aba
-    const handleStorageChange = () => {
-      setIsLoggedIn(!!localStorage.getItem("token"));
-    };
+  // FULL width + padding pequeno => logo no canto
+  const bar = {
+    width: "100%",
+    margin: 0,
+    padding: "4px 12px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: 12,
+  };
 
-    window.addEventListener("storage", handleStorageChange);
+  const brand = {
+    display: "flex",
+    alignItems: "center",
+    gap: 10,
+    textDecoration: "none",
+    color: "#111",
+    lineHeight: 1,
+  };
 
-    return () => {
-      window.removeEventListener("storage", handleStorageChange);
-    };
-  }, []);
-
-  // Atualiza login sempre que a rota mudar
-  useEffect(() => {
-    setIsLoggedIn(!!localStorage.getItem("token"));
-  }, [location]);
-
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    setIsLoggedIn(false);
-    navigate("/login");
+  const nav = { display: "flex", alignItems: "center", gap: 6, flexWrap: "wrap" };
+  const linkBase = {
+    textDecoration: "none",
+    textTransform: "uppercase",
+    fontWeight: 700,
+    fontSize: 14,
+    letterSpacing: 0.6,
+    padding: "8px 10px",
+    borderRadius: 8,
+    color: "#111",
+    border: "1px solid transparent",
+    lineHeight: 1,
   };
 
   return (
-    <header className="bg-white shadow-md sticky top-0 z-50">
-      <nav className="container mx-auto flex items-center justify-between py-4 px-6">
-        {/* Logo */}
-        <div className="flex items-center gap-2">
-          <img src={Logo} alt="Logo" className="h-10 w-10" />
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-[var(--color-roxo)] via-[var(--color-rosa)] to-[var(--color-verde)] bg-clip-text text-transparent">
-            PASSA A BOLA
-          </h1>
-        </div>
+    <header style={wrap}>
+      <style>{`#app-logo{height:${LOGO_H}px!important;width:auto!important;display:block}`}</style>
+      <div style={bar}>
+        {/* logo no canto esquerdo */}
+        <a href="#/" style={brand}>
+          <img id="app-logo" src={logo} alt="Passa a Bola" />
+          <strong style={{ fontSize: Math.max(16, Math.round(LOGO_H * 0.3)) }}>Passa a Bola</strong>
+        </a>
 
-        {/* Links */}
-        <ul
-          className={`lg:flex lg:items-center lg:gap-6 text-gray-600 font-medium transition-all duration-300
-            ${isOpen ? "block absolute top-16 right-0 w-56 bg-white shadow-md p-4" : "hidden"} lg:static lg:block`}
-        >
-          <li>
-            <Link
-              to="/"
-              onClick={() => setIsOpen(false)}
-              className={`${
-                location.pathname === "/" ? "text-[var(--color-roxo)]" : "text-gray-600"
-              } hover:text-[var(--color-roxo)]`}
+        <nav style={nav}>
+          {LINKS.map(([label, href]) => (
+            <a
+              key={href}
+              href={href}
+              style={{
+                ...linkBase,
+                background: isActive(href) ? "#EFE7FF" : "transparent",
+                color: isActive(href) ? "#7B3AF5" : "#111",
+                borderColor: isActive(href) ? "#E1D5FF" : "transparent",
+              }}
             >
-              Início
-            </Link>
-          </li>
-          <li>
-            <Link to="/jogadoras" onClick={() => setIsOpen(false)} className="hover:text-[var(--color-roxo)]">
-              Jogadoras
-            </Link>
-          </li>
-          <li>
-            <Link to="/blog" onClick={() => setIsOpen(false)} className="hover:text-[var(--color-roxo)]">
-              Blog
-            </Link>
-          </li>
-          <li>
-            <Link to="/clubes" onClick={() => setIsOpen(false)} className="hover:text-[var(--color-roxo)]">
-              Clubes
-            </Link>
-          </li>
-          <li>
-            <Link to="/campeonatos" onClick={() => setIsOpen(false)} className="hover:text-[var(--color-roxo)]">
-              Campeonatos
-            </Link>
-          </li>
-          <li>
-            <Link to="/escolinhas" onClick={() => setIsOpen(false)} className="hover:text-[var(--color-roxo)]">
-              Escolinhas
-            </Link>
-          </li>
-
-          {/* Botões mobile */}
-          <div className="flex flex-col gap-3 mt-4 lg:hidden">
-            {!isLoggedIn ? (
-              <>
-                <Link
-                  to="/login"
-                  onClick={() => setIsOpen(false)}
-                  className="px-4 py-2 border border-gray-400 text-[var(--color-roxo)] rounded-lg hover:bg-gray-100 text-center"
-                >
-                  Entrar
-                </Link>
-                <Link
-                  to="/cadastro"
-                  onClick={() => setIsOpen(false)}
-                  className="px-4 py-2 rounded-lg text-white font-semibold bg-gradient-to-r from-[var(--color-roxo)] via-[var(--color-rosa)] to-[var(--color-verde)] hover:opacity-90 text-center"
-                >
-                  Cadastrar
-                </Link>
-              </>
-            ) : (
-              <button
-                onClick={handleLogout}
-                className="px-4 py-2 rounded-lg text-white font-semibold bg-gradient-to-r from-[var(--color-roxo)] via-[var(--color-rosa)] to-[var(--color-verde)] hover:opacity-90 text-center"
-              >
-                Sair
-              </button>
-            )}
-          </div>
-        </ul>
-
-        {/* Botões desktop */}
-        <div className="hidden lg:flex gap-3">
-          {!isLoggedIn ? (
-            <>
-              <Link
-                to="/login"
-                className="px-4 py-2 border border-gray-400 text-[var(--color-roxo)] rounded-lg hover:bg-gray-100"
-              >
-                Entrar
-              </Link>
-              <Link
-                to="/cadastro"
-                className="px-4 py-2 rounded-lg text-white font-semibold bg-gradient-to-r from-[var(--color-roxo)] via-[var(--color-rosa)] to-[var(--color-verde)] hover:opacity-90"
-              >
-                Cadastrar
-              </Link>
-            </>
-          ) : (
-            <button
-              onClick={handleLogout}
-              className="px-4 py-2 rounded-lg text-white font-semibold bg-gradient-to-r from-[var(--color-roxo)] via-[var(--color-rosa)] to-[var(--color-verde)] hover:opacity-90"
-            >
-              Sair
-            </button>
-          )}
-        </div>
-
-        {/* Botão hambúrguer */}
-        <button
-          className="lg:hidden ml-auto p-2 rounded-md border border-gray-300"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          {isOpen ? "✖" : "☰"}
-        </button>
-      </nav>
+              {label}
+            </a>
+          ))}
+        </nav>
+      </div>
     </header>
   );
 }
