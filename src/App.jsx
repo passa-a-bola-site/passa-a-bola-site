@@ -3,9 +3,11 @@ import React, { useEffect, useState } from "react";
 import Header from "./components/Header.jsx";
 import Inicio from "./pages/Inicio.jsx";
 import Historia from "./pages/Historia.jsx";
-import Campeonatos from "./pages/campeonatos.jsx";
+import Campeonatos from "./pages/Campeonatos.jsx";
 import Times from "./pages/Times.jsx";
 import Noticias from "./pages/Noticias.jsx";
+import Inscricoes from "./pages/Inscricoes.jsx";
+import FormularioInscricao from "./pages/FormularioInscricao.jsx";
 
 function getRoute() {
   const raw = (window.location.hash || "#/").replace(/^#/, "");
@@ -16,6 +18,8 @@ function getRoute() {
   if (path.startsWith("/campeonatos")) return "/campeonatos";
   if (path.startsWith("/times")) return "/times";
   if (path.startsWith("/noticias")) return "/noticias";
+  if (path.startsWith("/inscricoes/formulario")) return "/inscricoes/formulario"; 
+  if (path.startsWith("/inscricoes")) return "/inscricoes";
   return "/";
 }
 
@@ -36,6 +40,8 @@ export default function App() {
       {route === "/campeonatos" && <Campeonatos />}
       {route === "/times" && <Times />}
       {route === "/noticias" && <Noticias />}
+      {route === "/inscricoes" && <Inscricoes />}
+      {route === "/inscricoes/formulario" && <FormularioInscricao />}
     </>
   );
 }

@@ -1,0 +1,74 @@
+.inscricoes-hero {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, #7e57c2, #fbc02d);
+  color: white;
+}
+
+.inscricoes-hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.inscricoes-hero p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.btn-primary {
+  background: #fbc02d;
+  color: black;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.inscricoes-lista {
+  text-align: center;
+  margin: 3rem auto;
+  padding: 2rem;
+  max-width: 600px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.inscricoes-footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 3rem 2rem;
+  background: #f9f9f9;
+  border-top: 1px solid #eee;
+  flex-wrap: wrap;
+}
+
+.footer-brand {
+  flex: 1;
+  min-width: 250px;
+  margin-bottom: 2rem;
+}
+
+.footer-links {
+  display: flex;
+  gap: 3rem;
+  flex: 1;
+  min-width: 250px;
+}
+
+.footer-links h4 {
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li {
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+}
+

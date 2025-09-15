@@ -1,0 +1,164 @@
+/* ======================
+   FormularioInscricao.css
+   ====================== */
+
+.formulario-page {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+}
+
+/* Hero com gradiente */
+.formulario-hero {
+  background: linear-gradient(rgba(123, 31, 162, 0.8), rgba(255, 193, 7, 0.8)),
+    url("https://images.unsplash.com/photo-1521412644187-c49fa049e84d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1650&q=80")
+      center/cover no-repeat;
+  color: white;
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.formulario-hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.formulario-hero p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.formulario-hero button {
+  background: #6a1b9a;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.formulario-hero button:hover {
+  background: #4a148c;
+}
+
+/* Card do formulário */
+.formulario-container {
+  max-width: 900px;
+  margin: -3rem auto 2rem auto;
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.formulario-container h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+  color: #333;
+}
+
+/* Grid do formulário */
+.formulario-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.formulario-grid-full {
+  grid-column: span 2;
+}
+
+/* Inputs */
+.formulario-container label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.formulario-container input,
+.formulario-container select,
+.formulario-container textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.3s ease;
+}
+
+.formulario-container input:focus,
+.formulario-container select:focus,
+.formulario-container textarea:focus {
+  border-color: #6a1b9a;
+}
+
+/* Botão de enviar */
+.formulario-container button[type="submit"] {
+  grid-column: span 2;
+  background: #6a1b9a;
+  color: white;
+  border: none;
+  padding: 1rem;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.formulario-container button[type="submit"]:hover {
+  background: #4a148c;
+}
+.inscricoes-lista {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.inscricao-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.inscricao-card:hover {
+  transform: translateY(-2px);
+}
+
+.inscricao-header {
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.inscricao-header span {
+  color: #555;
+  font-size: 0.9rem;
+  font-weight: normal;
+  margin-left: 10px;
+}
+
+.inscricao-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px 40px;
+}
+
+.inscricao-grid p {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.inscricao-grid strong {
+  font-weight: 600;
+  color: #333;
+}
